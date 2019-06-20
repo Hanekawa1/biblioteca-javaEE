@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	  
+	  <ui:composition template="../layout.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Editoras">
+				<h:form>
+					<p:growl />
+					<h:inputHidden value="#{editoraController.editora.idEditora}" />
+					<h:panelGrid columns="2">
+		  				
+		  				<p:outputLabel value="Nome da Editora: " />
+		  				<p:inputText value="#{editoraController.editora.nomeEditora}" />	
+					</h:panelGrid>	
+					<p:commandButton value="Salvar"
+		  							 actionListener="#{editoraController.salvar()}"
+		  							 update="@form" />
+		  							 
+	  				<p:dataTable value="#{editoraController.todos()}"
+	  							 var="marca"
+	  							 paginator="true"
+	  							 rows="10"
+	  							 emptyMessage="Nenhum autor foi cadastrado">  							  
+	  										
+	  						<p:column headerText="ID Editora">
+	  							#{editora.idEditora}	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Nome da Editora">
+	  							#{editora.nomeEditora}
+	  						</p:column>
+	  						
+	
+	  						<p:column headerText="Editar">
+	  						
+	  							<p:commandButton value="Editar"
+	  								actionListener="#{editoraController.editar(editora)}"
+	  								process="@this"
+	  								update="@form"/>
+	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Excluir">
+	  							
+	  							<p:commandButton value="Excluir"
+	  								actionListener="#{editoraController.excluir(editora.idEditora)}"
+	  								process="@this"
+	  								update="@form" />
+	  							
+	  						</p:column>
+	  				
+	  				</p:dataTable>
+	  				
+				</h:form>	
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+
+</html>

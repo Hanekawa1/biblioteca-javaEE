@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	  
+	<ui:composition template="../layout.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Obra">
+				<h:form>
+					<p:growl />
+					<h:panelGrid columns="2">
+					
+						<p:outputLabel value="Nome: " />
+	  					<p:inputText value="#{obraController.obra.nome}" />	
+					
+						<p:outputLabel value="Tipo: " />
+	  					<p:selectOneMenu value="#{obraController.obra.tipoObra}" 
+	  									 filter="true"
+	  									 converter="entityConverter">
+	  						
+	  						<f:selectItems value="#{tipoObraController.todos()}"
+	  									   var="tipoObra"
+	  									   itemLabel="#{tipoObra.descricaoTipo}"
+	  									   itemValue="#{tipoObra}" />
+	  									   
+	  					</p:selectOneMenu>
+	  					
+	  					<p:outputLabel value="Editora: " />
+	  					<p:selectOneMenu value="#{obraController.obra.editora}" 
+	  									 filter="true"
+	  									 converter="entityConverter">
+	  						
+	  						<f:selectItems value="#{editoraController.todos()}"
+	  									   var="editora"
+	  									   itemLabel="#{editora.nomeEditora}"
+	  									   itemValue="#{editora}" />
+	  									   
+	  					</p:selectOneMenu>
+	  					
+	  					<p:outputLabel value="Gêneros: " />
+	  					<p:selectCheckboxMenu value="#{obraController.obra.generos}"
+	  							converter="entityConverter"
+	  							label="Gêneros">
+	  							
+	  							<f:selectItems value="#{generoController.todos()}"
+	  								var="g"
+	  								itemLabel="#{g.descricaoGenero}"
+	  								itemValue="#{g}" />
+	  							
+	  					
+	  					</p:selectCheckboxMenu>
+	  					
+	  					<p:outputLabel value="Autores: " />
+	  					<p:selectCheckboxMenu value="#{obraController.obra.autores}"
+	  							converter="entityConverter"
+	  							label="Autores">
+	  							
+	  							<f:selectItems value="#{autorController.todos()}"
+	  								var="a"
+	  								itemLabel="#{a.pseudonimo}"
+	  								itemValue="#{a}" />
+	  							
+	  					
+	  					</p:selectCheckboxMenu>
+	  					
+					</h:panelGrid>
+					
+					<p:commandButton value="Salvar"
+	  								 actionListener="#{obraController.salvar()}"
+	  								 update="@form" />
+	  			
+	  				<p:dataTable value="#{obraController.todos()}"
+	  							 var="obra"
+	  							 paginator="true"
+	  							 rows="10"
+	  							 emptyMessage="Nenhuma obra foi cadastrada">
+	  							 
+	  						<p:column headerText="Código">
+	  							#{obra.idObra}	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Nome da Obra">
+	  							#{obra.nomeObra}	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Editora">
+	  							#{obra.editora.nomeEditora}	  						
+	  						</p:column>	  	
+	  						
+	  						<p:column headerText="Tipo da Obra">
+	  							#{obra.tipoObra.descricaoTipoObra}	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Gêneros">	  						
+	  							<ul>	  								
+	  								<ui:repeat var="genero" value="#{obra.generos}">	  									
+	  									<li>#{genero.descricaoGenero}</li>	  									
+	  								</ui:repeat>	  							
+	  							</ul>	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Autores">	  						
+	  							<ul>	  								
+	  								<ui:repeat var="autor" value="#{obra.autores}">	  									
+	  									<li>#{autor.pseudonimo}</li>	  									
+	  								</ui:repeat>	  							
+	  							</ul>	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Editar">	  						
+	  							<p:commandButton value="Editar"
+	  								actionListener="#{obraController.editar(obra)}"
+	  								process="@this"
+	  								update="@form"/>	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Excluir">	  							
+	  							<p:commandButton value="Excluir"
+	  								actionListener="#{obraController.excluir(obra.idObra)}"
+	  								process="@this"
+	  								update="@form" />	  							
+	  						</p:column>			  												  							  							 
+	  				</p:dataTable>
+	  				
+				</h:form>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+	
+
+</html>

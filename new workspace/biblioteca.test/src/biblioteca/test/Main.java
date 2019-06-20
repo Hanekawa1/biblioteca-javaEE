@@ -5,8 +5,8 @@ import java.util.*;
 import javax.ejb.embeddable.*;
 import javax.naming.*;
 
+import biblioteca.dal.dao.interfaces.*;
 import biblioteca.dal.entidade.*;
-import biblioteca.dal.interfaces.*;
 
 
 public class Main {
@@ -14,11 +14,11 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		
 		Properties p = new Properties();
-		p.put("locadoraDB", "new://Resource?type=DataSource");
-		p.put("locadoraDB.JdbcDriver", "com.mysql.jdbc.Driver");
-		p.put("locadoraDB.JdbcUrl","jdbc:mysql://localhost:3306/biblioteca");
-		p.put("locadoraDB.userName","root");
-		p.put("locadoraDB.password","");
+		p.put("bibliotecaBD", "new://Resource?type=DataSource");
+		p.put("bibliotecaBD.JdbcDriver", "com.mysql.jdbc.Driver");
+		p.put("bibliotecaBD.JdbcUrl","jdbc:mysql://localhost:3306/biblioteca");
+		p.put("bibliotecaBD.userName","root");
+		p.put("bibliotecaBD.password","");
 		
 		Context context = EJBContainer.createEJBContainer(p).getContext();
 		

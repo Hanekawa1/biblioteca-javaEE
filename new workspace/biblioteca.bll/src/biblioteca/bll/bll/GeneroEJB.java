@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import biblioteca.bll.util.Mensagem;
 import biblioteca.bll.util.TipoMensagem;
 import biblioteca.bll.interfaces.IGeneroEJB;
-import biblioteca.dal.interfaces.IGeneroDAO;
+import biblioteca.dal.dao.interfaces.IGeneroDAO;
 import biblioteca.dal.entidade.Genero;
 
 @Stateless

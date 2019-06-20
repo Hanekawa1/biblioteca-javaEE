@@ -1,9 +1,8 @@
 package biblioteca.dal.dao;
 
-import biblioteca.dal.interfaces.IEditoraDAO;
-
 import javax.enterprise.context.RequestScoped;
 
+import biblioteca.dal.dao.interfaces.IEditoraDAO;
 import biblioteca.dal.entidade.Editora;
 import biblioteca.dal.generics.JPAGenericDAO;
 

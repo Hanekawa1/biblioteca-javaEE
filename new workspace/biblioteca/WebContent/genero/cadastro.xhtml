@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<ui:composition template="../layout.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Gêneros">
+				<h:form>
+					<p:growl />
+					<h:inputHidden value="#{generoController.genero.idGenero}" />
+					<h:panelGrid columns="2">
+		  				
+		  				<p:outputLabel value="Gênero: " />
+		  				<p:inputText value="#{generoController.genero.descricaoEditora}" />	
+					</h:panelGrid>	
+					<p:commandButton value="Salvar"
+		  							 actionListener="#{generoController.salvar()}"
+		  							 update="@form" />
+		  							 
+	  				<p:dataTable value="#{generoController.todos()}"
+	  							 var="marca"
+	  							 paginator="true"
+	  							 rows="10"
+	  							 emptyMessage="Nenhum autor foi cadastrado">  							  
+	  										
+	  						<p:column headerText="ID Gênero">
+	  							#{genero.idGenero}	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Descrição">
+	  							#{genero.descricaoGenero}
+	  						</p:column>
+	  						
+	
+	  						<p:column headerText="Editar">
+	  						
+	  							<p:commandButton value="Editar"
+	  								actionListener="#{generoController.editar(genero)}"
+	  								process="@this"
+	  								update="@form"/>
+	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Excluir">
+	  							
+	  							<p:commandButton value="Excluir"
+	  								actionListener="#{generoController.excluir(genero.idGenero)}"
+	  								process="@this"
+	  								update="@form" />
+	  							
+	  						</p:column>
+	  				
+	  				</p:dataTable>
+	  				
+				</h:form>	
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</html>

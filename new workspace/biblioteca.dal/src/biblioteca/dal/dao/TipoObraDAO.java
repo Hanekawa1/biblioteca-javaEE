@@ -2,9 +2,9 @@ package biblioteca.dal.dao;
 
 import javax.enterprise.context.RequestScoped;
 
+import biblioteca.dal.dao.interfaces.ITipoObraDAO;
 import biblioteca.dal.entidade.TipoObra;
 import biblioteca.dal.generics.JPAGenericDAO;
-import biblioteca.dal.interfaces.ITipoObraDAO;
 
 @RequestScoped
 public class TipoObraDAO 	
