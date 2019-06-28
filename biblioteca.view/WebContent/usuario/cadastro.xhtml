@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
+	
+	<ui:composition template="../layout.xhtml">
+	
+		<ui:define name="conteudo">
+		
+		
+			<p:panel header="Usuários">
+			
+				<h:form>
+				
+					<p:growl />
+					
+					<h:inputHidden value="#{usuarioController.usuario.idPessoa}" />
+				
+					<h:panelGrid columns="2">
+					
+						<p:outputLabel value="Nome" />
+						<p:inputText value="#{usuarioController.usuario.nome}" />
+					
+						<p:outputLabel value="CPF"/>
+						<p:inputMask mask="999.999.999-99"    
+							value="#{usuarioController.usuario.cpfMascara}" />
+							
+						<p:outputLabel value="Data de Nascimento" />
+						<p:calendar pattern="dd/MM/yyyy"
+								value="#{usuarioController.usuario.dataNascimento}" />
+							
+					
+						<p:outputLabel value="Login" />
+						<p:inputText value="#{usuarioController.usuario.usuario.login}" />
+					
+						<p:outputLabel value="Senha" />
+						<p:password value="#{usuarioController.usuario.usuario.senha}"
+								feedback="true"
+								weakLabel="Senha fraca"
+								goodLabel="Senha boa"
+								strongLabel="Senha forte"/>
+					
+					</h:panelGrid>
+					
+					<p:commandButton value="Salvar"
+							actionListener="#{usuarioController.salvar()}"
+							update="@form"/>
+							
+					<p:dataTable value="#{usuarioController.listar()}"
+								var="funcionario">
+						
+						<p:column headerText="Código">
+							#{usuario.idPessoa}
+						</p:column>
+						
+						<p:column headerText="Nome">
+							#{usuario.nome}
+						</p:column>
+						
+						<p:column headerText="CPF">
+							#{usuario.cpfMascara}
+						</p:column>
+						
+						<p:column headerText="Data de Nascimento">
+							
+							<h:outputText value="#{usuario.dataNascimento}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+							
+						</p:column>
+						
+						<p:column headerText="Salário">
+							#{usuario.salario}
+						</p:column>
+						
+						<p:column headerText="Login">
+							#{usuario.usuario.login}
+						</p:column>
+					
+					</p:dataTable>
+				
+				</h:form>
+			
+			</p:panel>
+		
+		
+		</ui:define>
+	
+	</ui:composition>
+
+
+</html>

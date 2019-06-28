@@ -37,8 +37,18 @@ public class Obra {
 	@OneToMany(mappedBy = "obra")
 	private List<Exemplar> exemplares;
 	
+	private String nomeObra;
+	
 	//Getters & Setters
 	
+	public String getNomeObra() {
+		return nomeObra;
+	}
+
+	public void setNomeObra(String nomeObra) {
+		this.nomeObra = nomeObra;
+	}
+
 	public Integer getIdObra() {
 		return idObra;
 	}

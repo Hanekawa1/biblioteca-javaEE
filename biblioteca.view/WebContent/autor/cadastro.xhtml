@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+	  
+	<ui:composition template="../layout.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Autores">
+				<h:form>
+					<p:growl />
+					<h:inputHidden value="#{autorController.autor.idAutor}" />
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Código: " />
+		  				<p:inputText value="#{autorController.autor.codAutor}" />	
+		  				
+		  				<p:outputLabel value="Pseudônimo: " />
+		  				<p:inputText value="#{autorController.autor.pseudonimo}" />	
+					</h:panelGrid>	
+					<p:commandButton value="Salvar"
+		  							 actionListener="#{autorController.salvar()}"
+		  							 update="@form" />
+		  							 
+	  				<p:dataTable value="#{autorController.todos()}"
+	  							 var="autor"
+	  							 paginator="true"
+	  							 rows="10"
+	  							 emptyMessage="Nenhum autor foi cadastrado">
+	  							 
+	  						<p:column headerText="ID Autor">
+	  							#{autor.idAutor}	  						
+	  						</p:column>	  
+	  										
+	  						<p:column headerText="Código">
+	  							#{autor.codAutor}	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Pseudônimo">
+	  							#{autor.pseudonimo}
+	  						</p:column>
+	  						
+	
+	  						<p:column headerText="Editar">
+	  						
+	  							<p:commandButton value="Editar"
+	  								actionListener="#{autorController.editar(autor)}"
+	  								process="@this"
+	  								update="@form"/>
+	  						
+	  						</p:column>
+	  						
+	  						<p:column headerText="Excluir">
+	  							
+	  							<p:commandButton value="Excluir"
+	  								actionListener="#{autorController.excluir(autor.idAutor)}"
+	  								process="@this"
+	  								update="@form" />
+	  							
+	  						</p:column>
+	  				
+	  				</p:dataTable>
+	  				
+				</h:form>	
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</html>

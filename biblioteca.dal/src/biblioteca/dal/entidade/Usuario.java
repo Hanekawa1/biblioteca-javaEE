@@ -1,12 +1,14 @@
-package biblioteca.dal.entidade;
+package locadora.diurno.dal.entidade;
 
 import javax.persistence.*;
 
 @Entity
 public class Usuario {
 
+	
 	@Id
-	@Column(name = "idPessoaUsuario", insertable = false, updatable = false)
+	@Column(name="idPessoaUsuario",
+		insertable = false, updatable = false)
 	private Integer idPessoaUsuario;
 	
 	private String login;
@@ -14,8 +16,9 @@ public class Usuario {
 	private String senha;
 	
 	@OneToOne
-	@JoinColumn(name = "idPessoaUsuario", referencedColumnName = "idPessoa")
-	private Pessoa pessoa;
+	@JoinColumn(name="idPessoaUsuario",
+			referencedColumnName="idPessoaFuncionario")
+	private Funcionario funcionario;
 
 	public Integer getIdPessoaUsuario() {
 		return idPessoaUsuario;
@@ -41,12 +44,13 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
 
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
+	
 	
 }
